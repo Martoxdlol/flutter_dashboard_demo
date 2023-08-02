@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dashboard_demo/card_see_all.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -57,8 +58,9 @@ class HeroedChart extends StatelessWidget {
 
 void showActiveUsers(BuildContext context, Key key) {
   Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => Scaffold(
+    PageRouteBuilder(
+      transitionDuration: Duration(milliseconds: 300),
+      pageBuilder: (context, animation, secondaryAnimation) => Scaffold(
         appBar: AppBar(
           title: Text("Active users"),
         ),
@@ -68,6 +70,12 @@ void showActiveUsers(BuildContext context, Key key) {
           ),
         ),
       ),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return FadeTransition(
+          opacity: animation,
+          child: child,
+        );
+      },
     ),
   );
 }

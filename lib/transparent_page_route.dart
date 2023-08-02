@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
 class TransparentPageRoute<T> extends PageRoute<T> {
-  TransparentPageRoute({
-    required this.builder,
-    super.settings,
-    this.maintainState = true,
-    super.fullscreenDialog = true,
-    super.allowSnapshotting = true,
-  });
+  TransparentPageRoute(
+      {required this.builder,
+      super.settings,
+      this.maintainState = true,
+      super.fullscreenDialog = true,
+      super.allowSnapshotting = true,
+      this.padding});
 
   final WidgetBuilder builder;
+  final EdgeInsets? padding;
 
   @override
   Color? get barrierColor => const Color.fromRGBO(0, 0, 0, 0.6);
@@ -34,7 +35,7 @@ class TransparentPageRoute<T> extends PageRoute<T> {
     final size = MediaQuery.of(context).size;
     final double paddingValue = (size.width > 600) ? 16 : 0;
     return Padding(
-      padding: EdgeInsets.all(paddingValue),
+      padding: this.padding ?? EdgeInsets.all(paddingValue),
       child: Center(
         child: Container(
           clipBehavior: Clip.antiAlias,

@@ -28,10 +28,13 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 void showProfileInfo(BuildContext context) {
   Navigator.of(context).push(
     TransparentPageRoute(
+      padding: EdgeInsets.all(16),
       builder: (context) => Container(
+        // padding: EdgeInsets.symmetric(horizontal: 16, vertical: 0),
         constraints: BoxConstraints(maxHeight: 400, maxWidth: 600),
         child: Scaffold(
           appBar: AppBar(
+            primary: false,
             title: Text("Profile"),
           ),
           body: Center(
